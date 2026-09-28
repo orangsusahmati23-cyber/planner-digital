@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📔 Digital Planner Interaktif 2026</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- LOADING SCREEN -->
+<div id="loader" class="loader">
+  <div class="loader-content">
+    <h1>📔 Digital Planner</h1>
+    <div class="spinner"></div>
+    <p>Memuat planner Anda...</p>
+  </div>
+</div>
+
+<!-- SIDEBAR NAVIGATION -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>📔 Planner 2026</h2>
+    <button class="close-sidebar" onclick="toggleSidebar()">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <h3>🏠 Menu Utama</h3>
+      <a href="#" onclick="goToPage(0)" class="active"><span>📊</span> Dashboard</a>
+      <a href="#" onclick="goToPage(1)"><span>📅</span> Kalender 2026</a>
+      <a href="#" onclick="goToPage(2)"><span>✅</span> To-Do Harian</a>
+    </div>
+    <div class="nav-section">
+      <h3>📝 Perencanaan</h3>
+      <a href="#" onclick="goToPage(3)"><span>🎯</span> Goals Tahunan</a>
+      <a href="#" onclick="goToPage(4)"><span>📈</span> Habit Tracker</a>
+      <a href="#" onclick="goToPage(5)"><span>💰</span> Keuangan</a>
+      <a href="#" onclick="goToPage(6)"><span>🏋️</span> Kesehatan</a>
+      <a href="#" onclick="goToPage(7)"><span>📚</span> Bacaan & Belajar</a>
+    </div>
+    <div class="nav-section">
+      <h3>💭 Refleksi</h3>
+      <a href="#" onclick="goToPage(8)"><span>📓</span> Jurnal Harian</a>
+      <a href="#" onclick="goToPage(9)"><span>🌟</span> Gratitude</a>
+      <a href="#" onclick="goToPage(10)"><span>🧠</span> Brain Dump</a>
+    </div>
+    <div class="nav-section">
+      <h3>🗂️ Lainnya</h3>
+      <a href="#" onclick="goToPage(11)"><span>📋</span> Meeting Notes</a>
+      <a href="#" onclick="goToPage(12)"><span>🎨</span> Mood Board</a>
+      <a href="#" onclick="goToPage(13)"><span>⚙️</span> Pengaturan</a>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <button onclick="exportData()" class="btn-export">💾 Export Data</button>
+    <button onclick="importData()" class="btn-import">📥 Import Data</button>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <div class="topbar-info">
+      <h1 id="pageTitle">Dashboard</h1>
+      <p id="pageSubtitle">Selamat datang kembali! 👋</p>
+    </div>
+    <div class="topbar-actions">
+      <div class="clock" id="clock">00:00:00</div>
+      <div class="date-today" id="dateToday"></div>
+      <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    </div>
+  </header>
+
+  <!-- PAGES CONTAINER -->
+  <div class="pages-container" id="pagesContainer">
+    <!-- Halaman akan di-render oleh JavaScript -->
+  </div>
+
+  <!-- NAVIGATION FOOTER -->
+  <footer class="page-nav">
+    <button onclick="prevPage()" class="nav-btn">← Sebelumnya</button>
+    <div class="page-indicator">
+      <span id="currentPageNum">1</span> / <span id="totalPages">100</span>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <button onclick="nextPage()" class="nav-btn">Selanjutnya →</button>
+  </footer>
+</main>
+
+<!-- QUICK ACTIONS FLOATING BUTTON -->
+<div class="fab-container">
+  <button class="fab" onclick="toggleQuickMenu()">⚡</button>
+  <div class="fab-menu" id="fabMenu">
+    <button onclick="quickAdd('todo')">✅ Tambah To-Do</button>
+    <button onclick="quickAdd('note')">📝 Catatan Cepat</button>
+    <button onclick="quickAdd('event')">📅 Tambah Event</button>
+    <button onclick="startPomodoro()">⏱️ Pomodoro</button>
+  </div>
+</div>
+
+<!-- POMODORO TIMER MODAL -->
+<div class="modal" id="pomodoroModal">
+  <div class="modal-content pomodoro-modal">
+    <h2>⏱️ Pomodoro Timer</h2>
+    <div class="pomodoro-timer" id="pomodoroTimer">25:00</div>
+    <div class="pomodoro-controls">
+      <button onclick="startPomodoroTimer()">▶️ Start</button>
+      <button onclick="pausePomodoro()">⏸️ Pause</button>
+      <button onclick="resetPomodoro()">🔄 Reset</button>
+    </div>
+    <div class="pomodoro-modes">
+      <button onclick="setPomodoroMode(25)">Fokus 25m</button>
+      <button onclick="setPomodoroMode(5)">Break 5m</button>
+      <button onclick="setPomodoroMode(15)">Long 15m</button>
+    </div>
+    <button onclick="closePomodoro()" class="modal-close">Tutup</button>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div id="notification" class="notification"></div>
+
+<script src="pages.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
